@@ -1,0 +1,103 @@
+.bg- {
+    &primary {
+        background: hsl(235, 16%, 14%);
+    }
+
+    &stars {
+        background: url(/src/assets/images/bg-stars.svg);
+    }
+
+    &hills {
+        background: url(/src/assets/images/pattern-hills.svg);
+        background-repeat: no-repeat;
+        background-position-y: bottom;
+        background-size: contain;
+    }
+
+    &timer {
+        background: hsl(236, 21%, 26%);
+        height: 150px;
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &timer1 {
+        background: hsl(236, 21%, 26%);
+        background: hsl(234, 20%, 18%);
+    }
+}
+
+.top-flip {
+    animation: topflip 1s ease-in-out infinite;
+}
+
+// .bottom-flip {
+//     animation: bottomflip 1s infinite;
+// }
+
+@keyframes topflip {
+    0% {
+        visibility: visible;
+        top: 0;
+        bottom: 50%;
+        right: 10px;
+        left: 10px;
+        opacity: 0;
+    }
+
+    50% {
+        top: 50%;
+        right: 0;
+        left: 0;
+    }
+
+    100% {
+        top: 100%;
+        bottom: 0;
+        right: 10px;
+        left: 10px;
+        visibility: hidden;
+        opacity: 1;
+    }
+}
+
+@keyframes bottomflip {
+
+    0% {
+        top: 100%;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        // transform: rotateX(90deg);
+        visibility: hidden;
+    }
+
+    100% {
+        visibility: visible;
+        top: 0;
+        bottom: 50%;
+        right: 20px;
+        left: 20px;
+        // transform: rotateX(90deg);
+    }
+
+    // 0% {
+    //     visibility: visible;
+    //     transform: rotateX(90deg);
+    // }
+
+    // 50% {
+    //     transform: rotateX(0deg);
+    // }
+
+    // 100% {
+    //     transform: rotateX(90deg);
+    //     visibility: hidden;
+    // }
+}
+
+.circle {
+    background: radial-gradient(circle at bottom right, black 10px, transparent 10px, #252737)
+}

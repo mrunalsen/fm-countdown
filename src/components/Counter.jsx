@@ -73,6 +73,9 @@ const Counter = () => {
             <div className='flex flex-col items-center mx-4 relative'>
                 <div className="bg-timer relative flex justify-center items-center overflow-hidden rounded-md mx-2  ">
                     <div className="flip-container drop">
+                        <span className='text-rose-400 absolute fade text-8xl'>{formatNumber(remainingSeconds)}</span>
+                    </div>
+                    <div className="flip-container-bottom below">
                         <span className='text-rose-400 absolute text-8xl'>{formatNumber(remainingSeconds)}</span>
                     </div>
                     <span className='text-rose-400 absolute text-8xl'>{formatNumber(remainingSeconds)}</span>

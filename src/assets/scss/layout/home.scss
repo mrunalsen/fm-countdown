@@ -93,6 +93,7 @@
 }
 .flip-container-bottom{
     position: absolute;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,15 +101,23 @@
     bottom: 0;
     left: 0;
     right: 0;
-    
+    z-index: 2;
+    transform: rotateX(90deg);
+    >span{
+        bottom: 50%;
+    }
 }
 
 .drop {
     animation: drop 1s ease-in-out infinite;
     z-index: 1;
 }
+.below{
+    animation: below 1s ease-in-out infinite;
+    z-index: 1;
+}
 .fade{
-    animation: fade 1s ease-in-out infinite;
+    animation: fade 1s linear infinite;
 }
 // .bottom-flip {
 //     animation: bottomflip 1s infinite;
@@ -133,6 +142,43 @@
         transform: translateY(100%) rotateX(160deg);
     }
 
+}
+@keyframes below {
+
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) rotateX(90deg);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(-50%) rotateX(90deg);
+    }
+    75% {
+        opacity: 1;
+        // transform:  rotateX(90deg);
+        // transform: translateY(-100%) rotateX(120deg);
+        transform:translateY(0%) rotateX(0deg) ;
+    }
+    
+    100% {
+        opacity: 1;
+        transform:  translateY(0%) rotateX(0deg) ;
+    }
+
+}
+@keyframes fade {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    75%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 
 .bottom-text{

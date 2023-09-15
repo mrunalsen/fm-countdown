@@ -58,23 +58,6 @@
             }
     }
 }
-.span-top{
-    animation: spantop 1s infinite
-};
-
-@keyframes spantop{
-    0%{
-        opacity: 1;
-    }
-    100%{
-        transform: rotatex(90deg) scaleX(100%);
-    }
-}
-
-// .top-flip {
-//     animation: topflip 1s ease-in-out infinite;
-//     z-index: 1;
-// }
 .flip-container{
     display: flex;
     justify-content: center;
@@ -83,12 +66,12 @@
     background: #252737;
     overflow: hidden;
     opacity: 1;
-    top: 0;
     right: 0;
+    top: 0;
     bottom: 50%;
     left: 0;
     >span{
-    top: 50%;
+        top: calc(50% + 1px);
     }
 }
 .flip-container-bottom{
@@ -109,19 +92,15 @@
 }
 
 .drop {
-    animation: drop 1s ease-in-out infinite;
+    animation: drop 1s infinite;
     z-index: 1;
+
 }
 .below{
-    animation: below 1s ease-in-out infinite;
+    animation: below 1s infinite;
     z-index: 1;
+
 }
-.fade{
-    animation: fade 1s linear infinite;
-}
-// .bottom-flip {
-//     animation: bottomflip 1s infinite;
-// }
 
 @keyframes drop {
 
@@ -134,12 +113,23 @@
     }
     75% {
         // opacity: 0.8;
-        transform: translateY(100%) rotateX(160deg);
+        transform: translateY(calc(100%)) rotateX(160deg);
     }
-
-    100% {
-        // opacity: 0;
-        transform: translateY(100%) rotateX(160deg);
+    99%{
+        background: linear-gradient(
+            to top,
+            #252737 0%,
+            #343650 100%,
+            );
+        }
+        100% {
+            // opacity: 0;
+            transform: translateY(calc(100%)) rotateX(160deg);
+            background: linear-gradient(
+                to top,
+                   #343650 0%,
+                    #252737 100%
+                );
     }
 
 }
@@ -148,6 +138,7 @@
     0% {
         opacity: 0;
         transform: translateY(-50%) rotateX(90deg);
+        background:  #252737;
     }
     50%{
         opacity: 1;
@@ -155,33 +146,15 @@
     }
     75% {
         opacity: 1;
-        // transform:  rotateX(90deg);
-        // transform: translateY(-100%) rotateX(120deg);
         transform:translateY(0%) rotateX(0deg) ;
     }
-    
+    90%{
+        background: #343650 ;
+    }
     100% {
         opacity: 1;
         transform:  translateY(0%) rotateX(0deg) ;
+        background: #343650 ;
     }
 
-}
-@keyframes fade {
-    0%{
-        opacity: 1;
-    }
-    50%{
-        opacity: 1;
-    }
-    75%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 0;
-    }
-}
-
-.bottom-text{
-    position: absolute;
-    bottom: 50%;
 }

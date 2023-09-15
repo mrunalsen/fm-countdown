@@ -3,50 +3,49 @@ import React, { useEffect, useState } from 'react';
 const Counter = () => {
     // Number of days wanted for countdown
     const dayNum = 8;
-    // Initial seconds of 8 days
     const initialSeconds = dayNum * 24 * 60 * 60;
     const [seconds, setSeconds] = useState(initialSeconds);
-    const [isTimeUp, setIsTimeUp] = useState(false);
-    const [isDropped, setIsDropped] = useState(false);
+    const remainingSeconds = seconds % 60;
+    const [animationClass, setAnimationClass] = useState('drop')
+    const [animationClass1, setAnimationClass1] = useState('below')
+    const [resetAnimation, setResetAnimation] = useState(false)
+
+    // Initial seconds of 8 days
+        // Format a number with a leading zero if it's a single digit
+        const formatNumber = (number) => {
+            return number < 10 ? `0${number}` : `${number}`;
+        };
+        // Converting seconds into Days
+        const days = Math.floor(seconds / 86400);
+        // Converting seconds into Hours
+        const hours = Math.floor((seconds % 86400) / 3600);
+        // Converting seconds into Minutes
+        const minutes = Math.floor((seconds % 3600) / 60);
+        // Converting seconds into Seconds
 
     /* Initalizing counter interval on page load */
+
     useEffect(() => {
         const timer = setInterval(() => {
             if (seconds > 0) {
                 setSeconds(seconds - 1);
-                setIsTimeUp(true);
+                setAnimationClass((prevClass) => (prevClass === 'drop'? 'drop1' : 'drop'))
+                setAnimationClass1((prevClass) => (prevClass === 'below'? 'below1' : 'below'))
+                setResetAnimation(true)
             } else {
                 clearInterval(timer);
             }
         }, 1000);
-
+    
         return () => {
             clearInterval(timer);
         };
     }, [seconds]);
+    
+    const onANimationEnd = () => {
+    setResetAnimation(false)
+    }
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-          // Toggle the class "drop"
-          setIsDropped((prevIsDropped) => !prevIsDropped);
-        }, 1000); // Change the interval as needed
-    
-        // Clear the interval when the component unmounts
-        return () => clearInterval(interval);
-      }, []);
-    
-    // Format a number with a leading zero if it's a single digit
-    const formatNumber = (number) => {
-        return number < 10 ? `0${number}` : `${number}`;
-    };
-    // Converting seconds into Days
-    const days = Math.floor(seconds / 86400);
-    // Converting seconds into Hours
-    const hours = Math.floor((seconds % 86400) / 3600);
-    // Converting seconds into Minutes
-    const minutes = Math.floor((seconds % 3600) / 60);
-    // Converting seconds into Seconds
-    const remainingSeconds = seconds % 60;
 
     return (
         <div className='flex mt-24'>
@@ -76,10 +75,10 @@ const Counter = () => {
             {/* Start : main working  */}
             <div className='flex flex-col items-center mx-4 relative'>
                 <div className="bg-timer relative flex justify-center items-center overflow-hidden rounded-md mx-2">
-                    <div className={`flip-container drop`}>
+                    <div className={`flip-container ${animationClass} ${resetAnimation ? 'pause-animation' : ''}`}>
                         <span className='text-rose-400 absolute text-8xl'>{formatNumber(remainingSeconds)}</span>
                     </div>
-                    <div className="flip-container-bottom below">
+                    <div className={`flip-container-bottom ${animationClass1} ${resetAnimation ? 'pause-animation' : ''}`} onAnimationEnd={onANimationEnd}>
                         <span className='text-rose-400 absolute text-8xl'>{formatNumber(remainingSeconds)}</span>
                     </div>
                     <span className='text-rose-400 absolute text-8xl'>{formatNumber(remainingSeconds)}</span>

@@ -15,13 +15,11 @@
     }
 
     &timer {
-        background: linear-gradient(
-            to top,
-            #343650 0%,
-            #343650 50%,
-            #252737 50%,
-            #252737 100%
-            );
+        background: linear-gradient(to top,
+                #343650 0%,
+                #343650 50%,
+                #252737 50%,
+                #252737 100%);
         // background: hsl(236, 21%, 26%);
         height: 170px;
         width: 170px;
@@ -29,52 +27,71 @@
         justify-content: center;
         align-items: center;
         box-shadow: 0 18px 18px 0 #191a24;
-        &::before, &::after{
+
+        &::before,
+        &::after {
             content: '';
             position: absolute;
-            bottom:calc(50% - 7px);
+            bottom: calc(50% - 7px);
             width: 10px;
             height: 15px;
             background: #191a24;
             z-index: 2;
         }
-        
-        &::before{
+
+        &::before {
             left: 0;
             border-radius: 0 50px 50px 0;
-            }
-        &::after{
+        }
+
+        &::after {
             right: 0;
             border-radius: 50px 0 0 50px;
-            }
-            >span{
-                top: 0;
-                bottom: 0;
-                right: 0;
-                left: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        }
+
+        >span {
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width : 768px) {
+            height: 50px;
+            width: 50px;
+        }
     }
 }
-.flip-container{
+
+.text-timer {
+    @media (min-width : 769px) {
+        font-size: 6rem;
+        line-height: 1;
+    }
+}
+
+.flip-container {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     background: #252737;
     overflow: hidden;
-    opacity: 1;
+    opacity: 0.5;
     right: 0;
     top: 0;
     bottom: 50%;
     left: 0;
-    >span{
+
+    >span {
         top: calc(50% + 1px);
     }
 }
-.flip-container-bottom{
+
+.flip-container-bottom {
     position: absolute;
     overflow: hidden;
     display: flex;
@@ -86,75 +103,87 @@
     right: 0;
     z-index: 2;
     transform: rotateX(90deg);
-    >span{
+
+    >span {
         bottom: 50%;
     }
 }
 
-.drop {
-    animation: drop 1s infinite;
+.drop,
+.drop1 {
+    animation: drop;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
     z-index: 1;
-
 }
-.below{
-    animation: below 1s infinite;
-    z-index: 1;
 
+.drop {
+    animation-delay: 500ms;
+}
+
+.below,
+.below1 {
+    animation: below;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    z-index: 1;
+}
+
+.below {
+    animation-delay: 500ms;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 50%;
+    right: 0;
+    left: 0;
+    background: #252737;
+    opacity: 0.1;
+    z-index: 5;
 }
 
 @keyframes drop {
 
     0% {
         opacity: 0;
+
     }
-    50%{
+
+    50% {
         opacity: 1;
         transform: rotateX(10deg);
     }
-    75% {
-        // opacity: 0.8;
+
+    100% {
         transform: translateY(calc(100%)) rotateX(160deg);
-    }
-    99%{
-        background: linear-gradient(
-            to top,
-            #252737 0%,
-            #343650 100%,
-            );
-        }
-        100% {
-            // opacity: 0;
-            transform: translateY(calc(100%)) rotateX(160deg);
-            background: linear-gradient(
-                to top,
-                   #343650 0%,
-                    #252737 100%
-                );
+        background: linear-gradient(to top,
+                #343650 0%,
+                #252737 100%);
     }
 
 }
+
 @keyframes below {
 
     0% {
         opacity: 0;
         transform: translateY(-50%) rotateX(90deg);
-        background:  #252737;
+        background: #252737;
     }
-    50%{
+
+    50% {
         opacity: 1;
         transform: translateY(-50%) rotateX(90deg);
     }
-    75% {
-        opacity: 1;
-        transform:translateY(0%) rotateX(0deg) ;
-    }
-    90%{
-        background: #343650 ;
-    }
+
     100% {
         opacity: 1;
-        transform:  translateY(0%) rotateX(0deg) ;
-        background: #343650 ;
+        transform: translateY(0%) rotateX(0deg);
+        background: #343650;
     }
 
 }

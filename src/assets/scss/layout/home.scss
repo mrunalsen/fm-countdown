@@ -158,11 +158,14 @@
         transform: rotateX(10deg);
     }
 
+    99% {
+        background: #343650;
+    }
+
     100% {
         transform: translateY(calc(100%)) rotateX(160deg);
-        background: linear-gradient(to top,
-                #343650 0%,
-                #252737 100%);
+        background:
+            #252737;
     }
 
 }
